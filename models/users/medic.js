@@ -5,11 +5,11 @@ const { Schema, model, models} = mongoose;
 const medicSchema = new Schema({
     firstname: {
         type: String,
-        required: true
+        // required: true
     },
     lastname: {
         type: String,
-        required: true
+        // required: true
     },
     email: {
         type: String,
