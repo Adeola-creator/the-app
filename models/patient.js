@@ -21,8 +21,22 @@ const patientSchema = new Schema({
     height:{
         type: Number,
         required: true
-    }
-    ,
+    },
+    gender:{
+        type: String,
+        required: true
+    },
+    Dob:{
+        type: Date,
+        required: true
+    },
+    genotype:{
+        type: String,
+        required: true
+    },
+    address:{
+        type: String,
+    },
     weight: {
         type: Number,
         required: true
@@ -30,6 +44,14 @@ const patientSchema = new Schema({
     bloodPressure:{
         type: Number,
         required: true
+    },
+    blood_type: {
+        type: String,
+        required: true
+    },
+    next_of_kin:{
+        type: String,
+        required: true,
     },
     department: {
         type: String,
