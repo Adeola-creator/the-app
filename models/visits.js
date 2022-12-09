@@ -3,6 +3,7 @@ const { Schema, model, models} = mongoose
 
 const visitSchema = new Schema({
     date: Date,
+    lastVisit: String,
     attendantName: String,
     patientName: String,
     observation: String,
