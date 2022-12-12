@@ -13,7 +13,7 @@ const patientSchema = new Schema({
         required: true,
         max: 30
     },
-    phoneNumber:{
+    phone:{
         type: Number,
         required: true,
         unique: true
