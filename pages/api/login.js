@@ -1,6 +1,8 @@
 import { Medic } from "../../models/users/medic";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken"; import connectDB from "../../utils/connectdb";
+import jwt from "jsonwebtoken"; 
+import connectDB from "../../utils/connectdb";
+
 export default async function handler(req, res) {
 
     connectDB();
