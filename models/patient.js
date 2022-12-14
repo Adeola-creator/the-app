@@ -59,6 +59,9 @@ const patientSchema = new Schema({
     },
     note: {
         type: String,
+    },
+    Createdby:{
+        type: String
     }
 }, {timestamps: true})
 
