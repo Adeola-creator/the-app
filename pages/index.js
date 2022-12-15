@@ -3,13 +3,8 @@ import Dashboard from '../components/Dashboard'
 
 export default function Home() {
   return (
-    <>
-      <Head>
-        <title>Clinic System</title>
-        <meta name="description" content="GPI Nigeria Clinic Management System" />
-        <link rel="icon" href="/gpi-favicon.ico" />
-      </Head>
+    <div className='flex-1 flex flex-col px-5 justify-center items-center'>
       <Dashboard />
-    </>
+    </div>
   )
 }

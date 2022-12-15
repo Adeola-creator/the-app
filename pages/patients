@@ -1,8 +1,0 @@
- 
-
- function PatientPage(){
-    return <>
-        
-    </>
- }
- export default PatientPage
