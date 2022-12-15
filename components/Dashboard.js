@@ -8,9 +8,9 @@ function Dashboard() {
     <span> GPI </span>
     Clinic Management System</h1>
     <p className='text-xl'>Record Patient information, Vitals and more</p>
-    <button className='bg-[#007560] text-white max-w-[10ch] p-2 my-2 rounded-3xl'>Proceed</button>
+    <button className='bg-[#007560] text-white max-w-[15ch] p-2 my-2 rounded-3xl font-bold'>Proceed  <span className='text-xl font-bold'>&rarr;</span> </button>
   </div>
-  <Image className="rounded-full" src='/green.jpg' width={400} height={200}/>
+  <Image className="rounded-full opacity-50" src='/green.jpg' width={400} height={200}/>
   </div>
 }
 
