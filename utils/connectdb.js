@@ -2,10 +2,11 @@ import mongoose from "mongoose";
 
 const connection = {};
 async function connectDB() {
+  mongoose.set('strictQuery', true)
     if(connection.isConnected){
       return;
     }
-    const db = await mongoose.connection(process.env.MONGO_URI);
+    const db = await mongoose.connect(process.env.MONGO_URI);
     connection.isConnected = db.connections[0].readyState;
 }
 

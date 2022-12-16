@@ -53,6 +53,10 @@ const patientSchema = new Schema({
         type: String,
         required: true,
     },
+    next_of_kin_contact:{
+        type: String,
+        required: true
+    },
     department: {
         type: String,
         required: true
@@ -60,7 +64,7 @@ const patientSchema = new Schema({
     note: {
         type: String,
     },
-    Createdby:{
+    createdBy:{
         type: String
     }
 }, {timestamps: true})
