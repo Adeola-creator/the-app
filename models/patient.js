@@ -3,70 +3,22 @@ import mongoose from "mongoose"
 const { Schema, model, models} = mongoose;
 
 const patientSchema = new Schema({
-    firstName:{
-        type: String,
-        required: true,
-        max: 30
-    },
-    lastName: {
-        type: String,
-        required: true,
-        max: 30
-    },
-    phone:{
-        type: Number,
-        required: true,
-        unique: true
-    },
-    height:{
-        type: Number,
-        required: true
-    },
-    gender:{
-        type: String,
-        required: true
-    },
-    Dob:{
-        type: Date,
-        required: true
-    },
-    genotype:{
-        type: String,
-        required: true
-    },
-    address:{
-        type: String,
-    },
-    weight: {
-        type: Number,
-        required: true
-    },
-    bloodPressure:{
-        type: Number,
-        required: true
-    },
-    blood_type: {
-        type: String,
-        required: true
-    },
-    next_of_kin:{
-        type: String,
-        required: true,
-    },
-    next_of_kin_contact:{
-        type: String,
-        required: true
-    },
-    department: {
-        type: String,
-        required: true
-    },
-    note: {
-        type: String,
-    },
-    createdBy:{
-        type: String
-    }
+    firstName: String,
+    lastName:  String,
+    phone: Number,
+    height: String,
+    gender: String,
+    Dob: Date,
+    genotype: String,
+    address: String,
+    weight:String,
+    bloodPressure: String,
+    blood_type: String,
+    next_of_kin:String,
+    next_of_kin_contact: String,
+    department: String,
+    createdAt: {type: Date, default:Date.now()},
+    createdBy: String
 }, {timestamps: true})
 
 export const Patient = models.Patient || model("Patient", patientSchema)
