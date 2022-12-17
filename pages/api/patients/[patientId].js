@@ -25,6 +25,16 @@ export default  async function (req, res) {
             .catch(err => {
                 console.log(err);
         })
+        case "GET":
+            try{
+                await Patient.find({_id: patientId}).then(patients => {
+                   return  res.status(200).json({patients})
+                })
+                .catch(err => res.json({...err}))
+            }catch(error){
+                return res.json({...error})
+            }
+            break;
     default:
         break;
  }
