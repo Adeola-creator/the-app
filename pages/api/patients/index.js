@@ -2,9 +2,7 @@ import { Patient } from "../../../models/patient";
 import connectDB from "../../../utils/connectdb";
 
 export default  async (req, res) => {
-    console.log("Connecting to DB....");
     connectDB()
-    console.log("Connected to DB");
     const {phone} = req.body
 
     switch (req.method) {
@@ -17,8 +15,10 @@ export default  async (req, res) => {
                         ...doc
                     })
                 }
+                console.log(req.body);
                 const patient = new Patient({...req.body})
                 patient.save().then(() => {
+                    console.log("Patient successfully created");
                     return res.status(201).json({
                         status: "success",
                         patient
