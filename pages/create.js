@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, {useState} from "react";
 import Input from "../components/Input";
 
@@ -5,7 +6,7 @@ function Create() {
     const [formData, setFromData] =useState({
         firstName:"",
         lastName:"",
-        phone:"",
+        phone:null,
         address:"",
         dob:"",
         gender:"",
@@ -15,21 +16,32 @@ function Create() {
         createdby:"",
         weight:"",
         height:"",
-        bloodPressure: null,
+        bloodPressure: "",
         bloodType:"",
         genotype:"",
         allergies:""
     })
     function handleChange(e){
         const {name, value} = e.target
-        setFromData({[value]:name})
+        setFromData(prevValues => ({
+            ...prevValues,
+            [name]:value}))
     }
     function handleCreate(){
+        console.log(formData);
+        axios.post('http://localhost:3000/api/patients',{
+            ...formData
+        })
+        .then(res => {
+            alert("Patient created")
+            console.log(res);
+        })
+        .catch(err => console.log(err))
         return;
     }
     return (
         <div className="flex flex-1 flex-col">
-            <form className="flex flex-col w-full relative p-10">
+            <form  className="flex flex-col w-full relative select-none p-10">
                 <h1 className="select-none text-3xl text-[#006f5b] font-medium my-2">Add New Patient</h1>
                 <div className="flex w-full gap-2 md:gap-6">
                     <Input
@@ -96,8 +108,8 @@ function Create() {
                         label="Next of Kin"
                         placeholder='Enter a name'
                         type='text'
-                        name='next_of_kin'
-                        for='next_of_kin'
+                        name='nextOfKin'
+                        for='nextOfKin'
                         value={formData.nextOfKin}
                         onChange={handleChange}
                     />
@@ -105,8 +117,8 @@ function Create() {
                         label="Next of Kin Contact"
                         placeholder="Enter a contact"
                         type='text'
-                        name="next_of_kin_contact"
-                        for='next_of_kin_contact'
+                        name="nextOfKinContact"
+                        for='nextOfKinContact'
                         value={formData.nextOfKinContact}
                         onChange={handleChange}
                     />
@@ -191,7 +203,7 @@ function Create() {
                     
                 </div>
                 <div className=" flex justify-center mt-10 gap-10">
-                <button onClick={handleCreate} className="max-w-[10ch] text-white bg-[#007560] text-sm font-bold w-20 rounded-3xl p-1"><a>Add <i class="fa-solid fa-user-plus"></i></a></button>
+                <button onClick={handleCreate} className="max-w-[10ch] text-white bg-[#007560] text-sm font-bold w-20 rounded-3xl p-1"><a>Add <i className="fa-solid fa-user-plus"></i></a></button>
                 <button className="max-w-[10ch] text-[#007560] text-sm font-bold border border-[#007560] w-20 rounded-3xl p-1"><a href="/patients">Cancel</a></button>
                 </div>
             </form>
