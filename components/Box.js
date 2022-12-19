@@ -1,23 +1,13 @@
-import React, { useState} from 'react'
 import Card from './Card'
-import axios from "axios"
 
-function Box() {
-    const [patientData, setPatientData] = useState([])
-    axios.get('http://localhost:3000/api/patients')
-       .then((res) => {
-          const data = res.data.patients;
-          setPatientData(data)
-       })
-       .catch(err => {
-          console.log(err);
-       })
+
+function Box(props) {
   return (
-    <div className='grid grid-cols-6 gap-2 p-5'>
-    {patientData.map((patient, index) => 
+    <div className='grid grid-cols-5 gap-4 p-5'>
+    {(props.data).map((patient, index) => 
       <Card 
       key={index}
-      initial={patient.firstName[0]}
+      initial={patient.firstName[0].toUpperCase()}
       firstName={patient.firstName}
       lastName={patient.lastName}
       department={patient.department}
