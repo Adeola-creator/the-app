@@ -2,10 +2,11 @@ import mongoose from "mongoose";
 
 const { Schema, model, models} = mongoose
 
-const itemSchema = new Schema({
+const stockSchema = new Schema({
     name: String,
-    number: Number
+    number: Number,
+    createdAt: {type: Date, default: Date.now()}
 }, {timestamps: true})
 
 
-export const Item = models.Item || model("Item", itemSchema)
+export const Stock = models.Item || model("Stock", stockSchema)
