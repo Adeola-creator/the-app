@@ -1,11 +1,11 @@
-import { Stock } from "../../../models/patient";
+import { Item } from "../../../models/item";
 import connectDB from "../../../utils/connectdb";
 
 export default async(req, res) =>{
     connectDB()
     switch (req.method) {
         case "POST":
-            await Stock.exists({itemName})
+            await Item.exists({itemName})
             .then(doc => {
                 if (doc){
                     res.status(401).json({
@@ -14,12 +14,12 @@ export default async(req, res) =>{
                     })
                 }
                 console.log(req.body);
-                const item = new Stock({...req.body})
+                const item = new Item({...req.body})
                item.save().then(() => {
                     console.log("Item successfully created");
                     return res.status(201).json({
                         status: "success",
-                        patient
+                        item
                     })
                 })
                 .catch(e => {
@@ -29,7 +29,8 @@ export default async(req, res) =>{
             break;
         case "GET":
             try{
-                await Stock.find({}).then(items => {
+                await Item.find({})
+                .then(items => {
                    return  res.status(200).json({items})
                 })
                 .catch(err => res.json({...err}))

@@ -3,7 +3,7 @@ import Card from './Card'
 
 function Box(props) {
   return (
-    <div className='grid grid-cols-5 gap-4 p-5'>
+    <div className='grid grid-cols-5 gap-4 '>
     {(props.data).map((patient, index) => 
       <Card 
       key={index}

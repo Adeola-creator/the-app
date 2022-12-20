@@ -3,10 +3,10 @@ import React, {useState }from 'react'
 import DataRow from './DataRow'
 import axios from 'axios'
 function DataTable(props) {
-    const [items, setItems] = useState([])
-     axios.get('http://localhost:3000/api/stock')
+    const [visits, setVisits] = useState([])
+     axios.get('http://localhost:3000/api/visits')
        .then((res) => {
-          const data = res.data.stock;
+          const data = res.data.visits;
           setItems(data)
        })
        .catch(err => {

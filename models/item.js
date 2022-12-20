@@ -5,8 +5,9 @@ const { Schema, model, models} = mongoose
 const stockSchema = new Schema({
     name: String,
     number: Number,
-    createdAt: {type: Date, default: Date.now()}
+    createdAt: {type: Date, default: Date.now()},
+    createdby: String
 }, {timestamps: true})
 
 
-export const Stock = models.Item || model("Stock", stockSchema)
+export const Item = models.Item || model("Item", stockSchema)
