@@ -28,16 +28,17 @@ function Create() {
             [name]: value
         }))
     }
-    function handleCreate() {
+    function handleCreate(e) {
         console.log(formData);
         axios.post('http://localhost:3000/api/patients', {
             ...formData
         })
             .then(res => {
-                alert("Patient created")
                 console.log(res);
             })
             .catch(err => console.log(err))
+
+            e.preventDefault()
         return;
     }
     return (

@@ -10,11 +10,10 @@ export default  async (req, res) => {
             await Patient.exists({phone})
             .then(doc => {
                 if (doc){
-                    res.status(401).json(
+                    res.json(
                         ...doc
                     )
                 }
-                console.log(req.body);
                 const patient = new Patient({...req.body})
                 patient.save().then(() => {
                     console.log("Patient successfully created");

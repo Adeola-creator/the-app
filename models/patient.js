@@ -14,9 +14,10 @@ const patientSchema = new Schema({
     weight:String,
     bloodPressure: String,
     blood_type: String,
-    next_of_kin:String,
-    next_of_kin_contact: String,
+    nextOfKin:String,
+    nextOfKinContact: String,
     department: String,
+    allergies: String,
     createdAt: {type: Date, default:Date.now()},
     createdBy: String
 }, {timestamps: true})
