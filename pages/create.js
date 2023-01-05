@@ -13,7 +13,7 @@ function Create() {
         nextOfKin: "",
         nextOfKinContact: "",
         department: "",
-        createdby: "",
+        createdBy: "",
         weight: "",
         height: "",
         bloodPressure: "",
@@ -139,10 +139,10 @@ function Create() {
                     <Input
                         label="Attendant Name"
                         type='text'
-                        name='createdby'
+                        name='createdBy'
                         placeholder='Enter your name'
-                        for='createdby'
-                        value={formData.createdby}
+                        for='createdBy'
+                        value={formData.createdBy}
                         onChange={handleChange}
                     />
 
