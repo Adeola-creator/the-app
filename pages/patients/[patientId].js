@@ -1,3 +1,4 @@
+import Link from "next/link"
 import Details from "../../components/Details"
 export async function getStaticPaths() {
 
@@ -12,54 +13,88 @@ export async function getStaticPaths() {
 }
 export async function getStaticProps(context) {
   const foundPatientId = context.params.patientId
+
   const res = await fetch(`http://localhost:3000/api/patients/${foundPatientId}`)
-  const data = await res.json()
+  const data = await res.json();
   return {
-    props: { data: data },
+    props: { data: data[0]},
   }
 }
 
 
 export default function Display({ data }) {
-  const currentPatient = data[0]
-  console.log(currentPatient);
-  const { firstName, lastName, department, phone, height, weight, nextOfKin, nextOfKinContact, gender, genotype, address, bloodPressure } = currentPatient
+  const currentPatient = data
+  const { firstName, lastName, department, phone, height, weight, nextOfKin, createdAt, createdBy, updatedAt, allergies, nextOfKinContact, gender, genotype, address, bloodPressure, bloodType } = currentPatient
   return <div className="p-20 bg-gray-200">
     <Details
-      title="Name"
+      title="Name:"
       content={`${firstName} ${lastName}`}
     />
     <Details
-      title="Department"
+      title="Department:"
       content={department}
     />
     <Details
-      title="Gender"
+      title="Gender:"
       content={gender}
     />
     <Details
-      title="Address"
+      title="Address:"
       content={address}
     />
     <Details
-      title="Phone"
+      title="Phone Number:"
       content={phone}
     />
     <Details
-      title="Height"
+      title="Height:"
       content={height}
     />
     <Details
-      title="Weight"
+      title="Weight:"
       content={weight}
     />
     <Details
-      title="Blood Pressure"
+      title="Blood Pressure:"
       content={bloodPressure}
     />
     <Details
-      title="Next Of Kin"
-      content={nextOfkin}
+      title="Genotype:"
+      content={genotype}
     />
+    <Details
+      title="Blood Type:"
+      content={bloodType}
+    />
+    <Details
+      title="Allergies:"
+      content={allergies}
+    />
+    <Details
+      title="Next Of Kin:"
+      content={nextOfKin}
+    />
+    <Details
+      title="Next Of Kin Contact:"
+      content={nextOfKinContact}
+    />
+    <Details
+      title="Attendant Name:"
+      content={createdBy}
+    />
+    <Details
+      title="Profile Created At:"
+      content={createdAt}
+    />
+    <Details
+      title="Profile Last Updated At:"
+      content={updatedAt}
+    />
+
+    <div className="m-2 w-full flex justify-center items-center">
+      <Link href="#" className="bg-[#006f5b] text-white p-2 rounded">
+        Edit Patient Details
+      </Link>
+    </div>
   </div>
 }

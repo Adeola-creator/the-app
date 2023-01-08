@@ -1,16 +1,10 @@
 import React from 'react'
-import CollasibleForm from '../components/CollasibleForm'
-import DataTable from '../components/DataTable'
+import VisitForm from '../components/VisitForm'
 
 function visits() {
   return (
     <div>
-        <CollasibleForm 
-            buttonName= "Add Visits"
-        />
-        <DataTable 
-          heading="Clinic Visits"  
-        />
+        <VisitForm />
     </div>
   )
 }

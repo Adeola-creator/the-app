@@ -7,7 +7,7 @@ function DataTable(props) {
      axios.get('http://localhost:3000/api/visits')
        .then((res) => {
           const data = res.data.visits;
-          setItems(data)
+          setVisits(data)
        })
        .catch(err => {
           console.log(err);

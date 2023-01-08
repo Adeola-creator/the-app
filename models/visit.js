@@ -4,12 +4,12 @@ const { Schema, model, models} = mongoose
 const visitSchema = new Schema({
     date: {
         type: Date,
-        default: Date.now()
+        default: createdAt
     },
     attendantName: String,
     patient: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'patient'
+        type: Schema.Types.ObjectId,
+        ref: 'Patient'
     },
     observation: String,
     medications: String

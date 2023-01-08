@@ -13,13 +13,16 @@ const patientSchema = new Schema({
     address: String,
     weight:String,
     bloodPressure: String,
-    blood_type: String,
+    bloodType: String,
     nextOfKin:String,
     nextOfKinContact: String,
     department: String,
     allergies: String,
-    createdAt: {type: Date, default:Date.now()},
-    createdBy: String
+    createdBy: String,
+    // visits:[{
+    //     type: Schema.Types.ObjectId,
+    //     ref:"Visit"
+    // }]
 }, {timestamps: true})
 
 export const Patient = models.Patient || model("Patient", patientSchema)

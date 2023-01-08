@@ -10,9 +10,8 @@ export default  async (req, res) => {
             await Patient.exists({phone})
             .then(doc => {
                 if (doc){
-                    res.json(
-                        ...doc
-                    )
+                    res.json("Patient already exists");
+                    return res.json(doc)
                 }
                 const patient = new Patient({...req.body})
                 patient.save().then(() => {
@@ -28,12 +27,14 @@ export default  async (req, res) => {
             break;
         case "GET":
             try{
-                await Patient.find({}).then(patients => {
+                await Patient.find({})
+                // .populate('visits', 'date')
+                .then(patients => {
                    return  res.status(200).json(patients)
                 })
-                .catch(err => res.json({...err}))
+                .catch(err => res.json(err))
             }catch(error){
-                return res.json({...error})
+                return res.json(error)
             }
             break;
         default:
