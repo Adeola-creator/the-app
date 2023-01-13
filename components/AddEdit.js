@@ -1,8 +1,10 @@
+
 import axios from "axios";
 import React, { useState } from "react";
-import Input from "../components/Input";
+import Input from "./Input";
 
-function Create() {
+function Create(props) {
+    
     const [formData, setFromData] = useState({
         firstName: "",
         lastName: "",
@@ -44,7 +46,7 @@ function Create() {
     return (
         <div className="flex flex-1 flex-col">
             <form className="flex flex-col w-full relative select-none p-10">
-                <h1 className="select-none text-3xl text-[#006f5b] font-medium my-2">Add New Patient</h1>
+                <h1 className="select-none text-3xl text-[#006f5b] font-medium my-2">{props.heading}</h1>
                 <div className="flex w-full gap-2 md:gap-6">
                     <Input
                         label="First Name"
@@ -202,12 +204,16 @@ function Create() {
                             onChange={handleChange}
                         />
                     </div>
-
-                </div>
-                <div className=" flex justify-center mt-10 gap-10">
+                 </div>
+                 {inEditMode? <div>
+                    <button>
+                    Edit
+                    </button>
+                    </div>: <div className=" flex justify-center mt-10 gap-10">
                     <button onClick={handleCreate} className="max-w-[10ch] text-white bg-[#007560] text-sm font-bold w-20 rounded-3xl p-1"><a>Add <i className="fa-solid fa-user-plus"></i></a></button>
-                    <button className="max-w-[10ch] text-[#007560] text-sm font-bold border border-[#007560] w-20 rounded-3xl p-1"><a href="/patients">Cancel</a></button>
-                </div>
+                    <button className="max-w-[10ch] text-[#007560] text-sm font-bold border border-[#007560] w-20 rounded-3xl p-1"><a href="../patients">Cancel</a></button>
+                </div> }
+                  
             </form>
         </div>
     );

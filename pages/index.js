@@ -3,7 +3,7 @@ import Dashboard from '../components/Dashboard'
 
 export default function Home() {
   return (
-    <div className='flex-1 flex flex-col px-5 justify-center items-center'>
+    <div className='flex flex-col px-5 justify-center items-center'>
       <Dashboard />
     </div>
   )

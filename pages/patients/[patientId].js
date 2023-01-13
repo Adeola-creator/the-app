@@ -24,7 +24,7 @@ export async function getStaticProps(context) {
 
 export default function Display({ data }) {
   const currentPatient = data
-  const { firstName, lastName, department, phone, height, weight, nextOfKin, createdAt, createdBy, updatedAt, allergies, nextOfKinContact, gender, genotype, address, bloodPressure, bloodType } = currentPatient
+  const { firstName, lastName, department, phone, height, weight, nextOfKin, createdAt, createdBy, updatedAt, allergies, nextOfKinContact, gender, genotype, address, bloodPressure, bloodType, _id } = currentPatient
   return <div className="p-20 bg-gray-200">
     <Details
       title="Name:"
@@ -92,9 +92,10 @@ export default function Display({ data }) {
     />
 
     <div className="m-2 w-full flex justify-center items-center">
-      <Link href="#" className="bg-[#006f5b] text-white p-2 rounded">
-        Edit Patient Details
-      </Link>
+    <Link href={{
+      pathname: `/create/${encodeURIComponent(_id)}`}} className="bg-[#006f5b] text-white p-2 rounded">
+      Edit Patient Details</Link>
+      
     </div>
   </div>
 }
