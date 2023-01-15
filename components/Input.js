@@ -11,7 +11,7 @@ function Input(props) {
       name={name}
       value={value}
       onChange={onChange}
-      className='border  bg-gray-100 rounded outline-none p-1 focus:border-[#006f5b]'/>
+      className='border  bg-gray-50 rounded outline-none p-1 focus:border-[#006f5b] focus:bg-none'/>
     </label>
   );
 }

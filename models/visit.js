@@ -7,12 +7,9 @@ const visitSchema = new Schema({
         default: createdAt
     },
     attendantName: String,
-    patient: {
-        type: Schema.Types.ObjectId,
-        ref: 'Patient'
-    },
+    patientId: Schema.Types.ObjectId,
     observation: String,
-    medications: String
+    Drugs: String
 }, {timestamps: true})
 
 export const Visit = models.Visit || model("Visit", visitSchema)

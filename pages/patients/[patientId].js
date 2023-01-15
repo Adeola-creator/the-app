@@ -1,19 +1,18 @@
 import Link from "next/link"
 import Details from "../../components/Details"
-export async function getStaticPaths() {
 
+export async function getStaticPaths() {
   const res = await fetch(`http://localhost:3000/api/patients/`)
   const data = await res.json()
   const paths = data.map(patient => ({ params: { patientId: patient._id } }))
-
   return {
     paths,
     fallback: false,
   }
 }
+
 export async function getStaticProps(context) {
   const foundPatientId = context.params.patientId
-
   const res = await fetch(`http://localhost:3000/api/patients/${foundPatientId}`)
   const data = await res.json();
   return {
@@ -84,11 +83,11 @@ export default function Display({ data }) {
     />
     <Details
       title="Profile Created At:"
-      content={createdAt}
+      content={createdAt.slice(0,10)}
     />
     <Details
       title="Profile Last Updated At:"
-      content={updatedAt}
+      content={updatedAt.slice(0,10)}
     />
 
     <div className="m-2 w-full flex justify-center items-center">

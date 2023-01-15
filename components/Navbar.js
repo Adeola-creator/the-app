@@ -7,7 +7,6 @@ function Navbar() {
         <ul className="flex">
             <Link className="duration-300 hover:opacity-50 text-bold text-lg m-4 px-5" href="/">Home</Link>
             <Link className="duration-300 hover:opacity-50 text-bold text-lg m-4 px-5" href="/patients">Patients</Link>
-            <Link className="duration-300 hover:opacity-50 text-bold text-lg m-4 px-5" href="/stock">Stock</Link>
             <Link className="duration-300 hover:opacity-50 text-bold text-lg m-4 px-5" href="/visits">Visits</Link>
         </ul>
     </nav>
