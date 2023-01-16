@@ -4,7 +4,7 @@ function Search(props) {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    props.onSearch(searchTerm);
+    props.onSearch(searchTerm)
   }, [searchTerm]);
   
   return (

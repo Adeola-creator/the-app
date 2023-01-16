@@ -2,7 +2,7 @@ import Link from "next/link"
 import Details from "../../components/Details"
 
 export async function getStaticPaths() {
-  const res = await fetch(`http://localhost:3000/api/patients/`)
+  const res = await fetch(`http://localhost:3000/api/patients`)
   const data = await res.json()
   const paths = data.map(patient => ({ params: { patientId: patient._id } }))
   return {

@@ -1,10 +1,18 @@
 import React from 'react'
-import VisitForm from '../components/VisitForm'
+import Collapsible from '../components/Collapsible'
+import Form from '../components/Form'
 
 function visits() {
   return (
     <div>
-        <VisitForm />
+        <Collapsible label= "Record Visit">
+        <Form />
+       
+        </Collapsible>
+        <Collapsible label= "Record Visit">
+        <input type="date" name="" id="" />
+        <input type="color" name="" id="" />
+        </Collapsible>
     </div>
   )
 }

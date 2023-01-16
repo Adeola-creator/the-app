@@ -1,7 +1,7 @@
 import { Patient } from "../../../models/patient";
 import connectDB from "../../../utils/connectdb";
 
-export default  async (req, res) => {
+const managePatients = async (req, res) => {
     connectDB()
     const {phone} = req.body
 
@@ -41,3 +41,4 @@ export default  async (req, res) => {
             break;
     }
 }
+export default managePatients

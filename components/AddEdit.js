@@ -5,8 +5,10 @@ import AddArea from "./AddArea";
 import Input from "./Input";
 
 function Create(props) {
+const {patientData, heading} = props;
+console.log(patientData, heading);
 
-    const [formData, setFromData] = useState({
+    const [formData, setFromData] = useState(patientData? patientData: {
         firstName: "",
         lastName: "",
         phone: "",
