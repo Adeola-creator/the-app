@@ -2,13 +2,12 @@
 import axios from "axios";
 import React, { useState } from "react";
 import AddArea from "./AddArea";
+import EditArea from "./EditArea";
 import Input from "./Input";
 
-function Create(props) {
-const {patientData, heading} = props;
-console.log(patientData, heading);
-
-    const [formData, setFromData] = useState(patientData? patientData: {
+function AddEdit(props) {
+    const {patientData, heading} = props;
+    const [formData, setFromData] = useState(patientData ? patientData: {
         firstName: "",
         lastName: "",
         phone: "",
@@ -26,6 +25,7 @@ console.log(patientData, heading);
         genotype: "",
         allergies: ""
     })
+
     function handleChange(e) {
         const { name, value } = e.target
         setFromData(prevValues => ({
@@ -33,8 +33,7 @@ console.log(patientData, heading);
             [name]: value
         }))
     }
-    function handleCreate(e) {
-        console.log(formData);
+    function handleCreate() {
         axios.post('http://localhost:3000/api/patients', {
             ...formData
         })
@@ -44,10 +43,17 @@ console.log(patientData, heading);
             .catch(err => console.log(err))
         return;
     }
+
+    function handleEdit(patientId){
+        axios.put(`http://localhost:3000/api/patients/${patientId}`)
+        .then(res => console.log(res, "Patient deleted successfully"))
+        .catch(err => console.log(err))
+    }
+
     return (
         <div className="flex flex-1 flex-col">
             <form className="flex flex-col w-full relative select-none p-10">
-                <h1 className="select-none text-3xl text-[#006f5b] font-medium my-2">{props.heading}</h1>
+                <h1 className="select-none text-3xl text-[#006f5b] font-medium my-2">{heading}</h1>
                 <div className="flex w-full gap-2 md:gap-6">
                     <Input
                         label="First Name"
@@ -74,7 +80,7 @@ console.log(patientData, heading);
                         placeholder="eg.0812345678"
                         type='text'
                         name='phone'
-                        for='lastName'
+                        for='phone'
                         value={formData.phone}
                         onChange={handleChange}
                     />
@@ -91,7 +97,6 @@ console.log(patientData, heading);
                 <div className="flex w-full gap-2 md:gap-6">
                     <Input
                         label="Date of Birth"
-                        placeholder="eg.0812345678"
                         type='date'
                         name='dob'
                         for='dob'
@@ -206,11 +211,12 @@ console.log(patientData, heading);
                         />
                     </div>
                 </div>
-                 <AddArea 
-                 onAdd={handleCreate}/>
+                    <div className=" flex justify-center mt-10 gap-10">
+                    { patientData ? <EditArea onSave={() => handleEdit(formData._id)} /> : <AddArea onAdd={() => handleCreate}/> }
+                    </div>
             </form>
         </div>
     );
 }
 
-export default Create;
+export default AddEdit;

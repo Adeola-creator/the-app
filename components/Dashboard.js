@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 function Dashboard() {
-  return <div className='flex flex-row w-full justify-between p-5 mt-20'>
+  return <div className='flex  flex-col-reverse w-full justify-center sm:items-center sm:flex-row sm:justify-between p-5 mt-20'>
   <div className='flex flex-col justify-center md:w-full'>
     <h1 className='text-3xl flex flex-col text-[#007560] py-2'>
     <span className='text-5xl font-bold'> GPI </span>
@@ -13,7 +13,7 @@ function Dashboard() {
     Proceed <span className='text-xl font-extrabold'>&rarr;</span> 
     </Link>
   </div>
-  <Image alt="Health" className="rounded-full opacity-50" src='/green.jpg' width={400} height={200}/>
+  <Image alt="Health" className="rounded-full sm:w-52 opacity-50" src='/green.jpg' width={400} height={200}/>
   </div>
 }
 

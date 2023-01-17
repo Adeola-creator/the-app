@@ -1,12 +1,14 @@
 import React from 'react'
+import AddButton from './AddButton'
 
-function EditArea() {
+function EditArea(props) {
   return (
-    <div>
-      <button>
-      Save
-      </button>
-    </div>
+    <>
+     <AddButton 
+     route="#"
+     onClick={props.onSave}
+     title="Save"/>
+    </>
   )
 }
 

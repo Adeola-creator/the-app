@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
-import Create from "../../components/AddEdit";
+import AddEdit from "../../components/AddEdit";
 
 function CreatePage() {
 return(<div>
-    <Create 
+    <AddEdit
     heading= "Create new Patient"
     />
     </div>)

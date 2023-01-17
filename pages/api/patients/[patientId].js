@@ -2,9 +2,9 @@ import { Patient } from "../../../models/patient";
 import connectDB from "../../../utils/connectdb";
 
 
-export default  async function (req, res) {
+const handlePatientReq = async function (req, res) {
     connectDB()
- const {patientId} = req.query
+ const {patientId} = req.body
  switch (req.method) {
     case "PUT":
         await Patient.findOneAndUpdate({_id: patientId}, {$set: req.body}, {new: true})
@@ -37,6 +37,6 @@ export default  async function (req, res) {
     default:
         break;
  }
-
- 
 }
+
+export default handlePatientReq;

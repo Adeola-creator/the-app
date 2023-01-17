@@ -1,4 +1,4 @@
-import Create from ".";
+import AddEdit from "../../components/AddEdit";
 import axios from "axios";
 
 export async function getStaticPaths() {
@@ -19,8 +19,7 @@ export async function getStaticProps({ params }) {
 function EditPage({data}){
   const currentPatient = data[0]
 return (<div>
-    <h1>{currentPatient.firstName}</h1>
-    <Create 
+    <AddEdit
     patientData={currentPatient}
     heading="Update Patient"/>
     </div>
