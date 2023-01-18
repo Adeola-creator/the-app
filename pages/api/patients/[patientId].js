@@ -2,12 +2,13 @@ import { Patient } from "../../../models/patient";
 import connectDB from "../../../utils/connectdb";
 
 
-const handlePatientReq = async function (req, res) {
+export default async function handler (req, res) {
     connectDB()
- const {patientId} = req.body
+ const {patientId} = req.query
  switch (req.method) {
-    case "PUT":
-        await Patient.findOneAndUpdate({_id: patientId}, {$set: req.body}, {new: true})
+    case "PATCH":
+        console.log(...req.body);
+        await Patient.findOneAndUpdate({_id: patientId}, {$set: {...req.body}}, {new: true})
         .then(patient => 
            res.status(200).json(
                patient))
@@ -25,7 +26,7 @@ const handlePatientReq = async function (req, res) {
         })
         case "GET":
             try{
-                await Patient.find({_id: patientId})
+                await Patient.find({_id:patientId})
                 .then(patient => {
                    return  res.status(200).json(patient)
                 })
@@ -39,4 +40,3 @@ const handlePatientReq = async function (req, res) {
  }
 }
 
-export default handlePatientReq;

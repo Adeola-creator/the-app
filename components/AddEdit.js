@@ -7,7 +7,8 @@ import Input from "./Input";
 
 function AddEdit(props) {
     const {patientData, heading} = props;
-    const [formData, setFromData] = useState(patientData ? patientData: {
+    console.log(patientData);
+    const [formData, setFromData] = useState(patientData && patientData._id ? patientData: {
         firstName: "",
         lastName: "",
         phone: "",
@@ -43,9 +44,13 @@ function AddEdit(props) {
             .catch(err => console.log(err))
         return;
     }
-
+    function callEdit(){
+        console.log(patientId);
+         handleEdit(patientId)
+    }
     function handleEdit(patientId){
-        axios.put(`http://localhost:3000/api/patients/${patientId}`)
+        console.log(formData)
+        axios.patch(`http://localhost:3000/api/patients/${patientId}`, {...formData})
         .then(res => console.log(res, "Patient deleted successfully"))
         .catch(err => console.log(err))
     }
@@ -212,7 +217,9 @@ function AddEdit(props) {
                     </div>
                 </div>
                     <div className=" flex justify-center mt-10 gap-10">
-                    { patientData ? <EditArea onSave={() => handleEdit(formData._id)} /> : <AddArea onAdd={() => handleCreate}/> }
+                    { patientData ? <EditArea link={{
+                        pathname: `/patients/${encodeURIComponent(patientData._id)}`
+                    }} onSave={callEdit} /> : <AddArea onAdd={handleCreate}/> }
                     </div>
             </form>
         </div>

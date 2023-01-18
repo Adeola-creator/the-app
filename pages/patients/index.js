@@ -10,6 +10,7 @@ function Patients() {
   const [searchPatients, setSearchPatients] = useState([]);
   const [searchData, setSearchData] = useState("");
   const keys = ["firstName", "lastName", "department", "lastVisit"];
+
   useEffect(() => {
     const fetchData = async () => {
       axios
@@ -17,7 +18,6 @@ function Patients() {
         .then((res) => {
           const data = res.data;
           setPatientData(data);
-          console.log(data);
         })
         .catch((err) => {
           console.log(err);

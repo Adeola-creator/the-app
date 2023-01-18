@@ -5,7 +5,7 @@ function EditArea(props) {
   return (
     <>
      <AddButton 
-     route="#"
+     route={props.link}
      onClick={props.onSave}
      title="Save"/>
     </>
