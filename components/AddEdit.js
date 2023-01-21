@@ -7,7 +7,6 @@ import Input from "./Input";
 
 function AddEdit(props) {
     const {patientData, heading} = props;
-    console.log(patientData);
     const [formData, setFromData] = useState(patientData && patientData._id ? patientData: {
         firstName: "",
         lastName: "",
@@ -35,13 +34,14 @@ function AddEdit(props) {
         }))
     }
     function handleCreate() {
+        console.log("Create called", {...formData});
         axios.post('http://localhost:3000/api/patients', {
             ...formData
         })
             .then(res => {
-                console.log(res);
+                console.log(res, "Patient created");
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err, "Couldn't create patient"))
         return;
     }
     function callEdit(){

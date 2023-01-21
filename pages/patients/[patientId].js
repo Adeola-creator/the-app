@@ -3,6 +3,7 @@ import Link from "next/link"
 import Modal from "../../components/Modal"
 import Details from "../../components/Details"
 import axios from "axios"
+import Form from "../../components/Form"
 
 export async function getStaticPaths() {
   const res = await axios.get(`http://localhost:3000/api/patients`)
@@ -102,6 +103,7 @@ export default function Display({ data }) {
     />
 
     <div className="m-2 w-full flex justify-center items-center gap-20">
+    <Form />
     <Link href={{
       pathname: `/edit/${encodeURIComponent(_id)}`}} className="bg-[#006f5b] text-white p-2 rounded-lg text-center w-[25ch]">
       Edit Patient Information</Link>

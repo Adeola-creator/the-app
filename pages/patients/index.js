@@ -17,6 +17,7 @@ function Patients() {
         .get("http://localhost:3000/api/patients")
         .then((res) => {
           const data = res.data;
+          console.log(data);
           setPatientData(data);
         })
         .catch((err) => {

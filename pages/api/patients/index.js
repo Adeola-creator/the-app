@@ -2,7 +2,7 @@ import { Patient } from "../../../models/patient";
 import connectDB from "../../../utils/connectdb";
 
 const managePatients = async (req, res) => {
-    connectDB()
+    await connectDB()
     const {phone} = req.body
 
     switch (req.method) {
