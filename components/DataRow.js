@@ -1,12 +1,14 @@
 import React from 'react'
+import Link from 'next/link'
 
 function DataRow(props) {
   return (
     <tr className='text-center divide-x-2 divide-[#007560] p-2'>
-    <td>{props.itemName} Drug name</td>
-    <td>{props.itemNumber} Available Number</td>
-    <td><button onClick><i className="fa-regular fa-pen-to-square"></i></button></td>
-    <td><button><i className="fa-solid fa-trash"></i></button></td>
+    <td>{props.visitDate} Date</td>
+    <td>{props.patientName} Patient Name</td>
+    <td>{props.attendantName} Attendant Name</td>
+    <td><Link className="" href="#">View Patient  <i class="fa-regular fa-user"></i> </Link></td>
+    <td><Link href="#">View Patient Visits</Link></td>
     </tr>
   )
 }
