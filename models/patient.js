@@ -19,10 +19,6 @@ const patientSchema = new Schema({
     department: String,
     allergies: String,
     createdBy: String,
-    visits:[{
-        type: Schema.Types.ObjectId,
-        ref:"Visit"
-    }]
 }, {timestamps: true})
 
 export const Patient = models.Patient || model("Patient", patientSchema)

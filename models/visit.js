@@ -7,7 +7,7 @@ const visitSchema = new Schema({
         default: createdAt
     },
     visitDate: String,
-    patientNumber: String,
+    patientName: String,
     attendantName: String,
     patient: {type: Schema.Types.ObjectId, ref: 'Patient'},
     observation: String,
