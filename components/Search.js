@@ -8,7 +8,7 @@ function Search(props) {
   }, [searchTerm]);
   
   return (
-    <div className="flex bg-gray-50 p-10 w-full justify-center shadow">
+    <div className="flex bg-gray-50 p-10 w-full justify-center mb-5 shadow">
       <input
         name="searchTerm"
         value={searchTerm}
