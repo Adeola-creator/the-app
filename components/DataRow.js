@@ -7,7 +7,7 @@ function DataRow(props) {
     <td>{props.visitDate} Date</td>
     <td>{props.patientName} Patient Name</td>
     <td>{props.attendantName} Attendant Name</td>
-    <td><Link className="" href="#">View Patient  <i class="fa-regular fa-user"></i> </Link></td>
+    <td><Link className="" href="#">View Patient  <i className="fa-regular fa-user"></i> </Link></td>
     <td><Link href="#">View Patient Visits</Link></td>
     </tr>
   )

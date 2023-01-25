@@ -7,8 +7,9 @@ function visits() {
   return (
     <div>
         <Collapsible 
-        label= "Record Visit"
-        closeText=<i class="fa-regular fa-x"></i>>
+        defaultLabel= "Record Visit"
+        activeLabel= "Close Form"
+        closeText= "X">
         <Form />
         </Collapsible>
         <DataTable  
