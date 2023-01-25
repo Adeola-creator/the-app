@@ -1,25 +1,39 @@
 import mongoose from "mongoose";
+const MONGO_URI = process.env.MONGO_URI
+mongoose.set('strictQuery', false)
 
-const connectDB = handler => async (req, res) => {
-  mongoose.set('bufferCommands', false);
-  try{
-    console.log("Connecting to DB")
-    if (mongoose.connections[0]._readyState) {
-      console.log("Connected to DB")
-      return handler(req, res);
-    }
-    mongoose.connect(process.env.MONGO_URI, {
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-      useCreateIndex: true,
-      useNewUrlParser: true
-    });
-    console.log("Connected to DB")
-    return handler(req, res);
-  }catch(err){
-    console.log(err);
+if (!MONGO_URI) {
+  throw new Error(
+    'Please define the MONGODB_URI environment variable inside .env.local'
+  )
+}
+
+let cached = global.mongoose
+
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null }
+}
+
+async function connectDB () {
+  if (cached.conn) {
+    return cached.conn
   }
 
-};
+  if (!cached.promise) {
+    const opts = {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      bufferCommands: false
+    }
+
+    cached.promise = mongoose.connect(MONGO_URI, opts)
+    .then(mongoose => {
+      console.log("Connected to MongoDB");
+      return mongoose
+    })
+  }
+  cached.conn = await cached.promise
+  return cached.conn
+}
 
 export default connectDB
