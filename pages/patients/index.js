@@ -56,15 +56,13 @@ function Patients() {
   }, [searchData]);
 
   return (
-    <>
+    <div className="p-2">
       <Search onSearch={handleSearch} />
-      <button className="w-full max-w-[15ch] rounded text-[#007560] font-medium border border-[#007560] p-1 ml-5 mt-5">
-        <Link href="/create">
+        <Link className="max-w-[15ch] rounded text-[#007560] font-medium border border-[#007560] p-1 ml-5" href="/create">
           Add Patient <i className="fa-regular fa-plus"></i>
         </Link>
-      </button>
       <Box data={isSearching ? searchPatients : patientData} />
-    </>
+    </div>
   );
 }
 export default Patients;
