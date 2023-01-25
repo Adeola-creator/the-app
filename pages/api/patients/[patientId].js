@@ -5,13 +5,12 @@ import connectDB from "../../../utils/connectdb";
 export default async function handler (req, res) {
     connectDB()
  const {patientId} = req.query
- switch (req.method) {
-    case "PATCH":
-        console.log(...req.body);
+ switch (req.method) {    case "PATCH":
         await Patient.findOneAndUpdate({_id: patientId}, {$set: {...req.body}}, {new: true})
         .then(patient => 
+           { console.log("Patient updated successfully")
            res.status(200).json(
-               patient))
+               patient)})
         .catch(e => console.log(e))
         break;
     case "DELETE":
