@@ -10,14 +10,14 @@ function Form(props) {
     drugs:  "",
     observation: "",
   })
-  const addVisit = (visitForm) => {
+  const addVisit = () => {
     axios.post("http://localhost/3000/visits",{
       ...visitForm})
-      .then(function (response) {
+      .then((response) => {
         console.log(response);
       })
-      .catch(function (error) {
-        console.log(error);
+      .catch((error) => {
+         console.log(error);
       })
   }
   const handleEnter= (e) => {
@@ -78,6 +78,7 @@ function Form(props) {
     onChange={handleChange}
     className='border rounded focus:outline-none'></textarea>
     </label>
+   <button onClick={addVisit} className='rounded-lg border p-1 my-2 px-3'>Save</button>
     </form>
     </div>
   )
