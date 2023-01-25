@@ -2,12 +2,14 @@
 import axios from "axios";
 import React, { useState } from "react";
 import AddArea from "./AddArea";
-import EditArea from "./EditArea";
 import Input from "./Input";
 
 function AddEdit(props) {
     const {patientData, heading} = props;
-    const [formData, setFromData] = useState(patientData && patientData._id ? patientData: {
+    const dob = patientData.dob.slice(0,10)
+    const [formData, setFromData] = useState(patientData && patientData._id ? 
+        {...patientData,
+            dob:dob}: {
         firstName: "",
         lastName: "",
         phone: "",
@@ -44,22 +46,23 @@ function AddEdit(props) {
             .catch(err => console.log(err, "Couldn't create patient"))
         return;
     }
-    function callEdit(){
-        console.log(patientId);
-         handleEdit(patientId)
+    function callEdit(e){
+        e.preventDefault()
+        const {_id} = patientData
+        console.log(_id);
+         handleEdit(_id)
     }
-    function handleEdit(patientId){
-        console.log(formData)
-        axios.patch(`http://localhost:3000/api/patients/${patientId}`, {...formData})
+    function handleEdit(id){
+        axios.patch(`http://localhost:3000/api/patients/${id}`, {...formData})
         .then(res => console.log(res, "Patient deleted successfully"))
         .catch(err => console.log(err))
     }
 
     return (
-        <div className="flex flex-1 flex-col">
-            <form className="flex flex-col w-full relative select-none p-10">
-                <h1 className="select-none text-3xl text-[#006f5b] font-medium my-2">{heading}</h1>
-                <div className="flex w-full gap-2 md:gap-6">
+        <div>
+            <form className="p-5">
+                <h1 className="select-none text-3xl text-[#006f5b] font-medium mb-4">{heading}</h1>
+                <div className="flex flex-col md:flex-row w-full gap-1 md:gap-6">
                     <Input
                         label="First Name"
                         placeholder="first name"
@@ -79,7 +82,7 @@ function AddEdit(props) {
                         onChange={handleChange}
                     />
                 </div>
-                <div className="flex w-full gap-2 md:gap-6">
+                <div className="flex flex-col md:flex-row w-full gap-1 gap-2 md:gap-6">
                     <Input
                         label="Phone"
                         placeholder="eg.0812345678"
@@ -99,7 +102,7 @@ function AddEdit(props) {
                         onChange={handleChange}
                     />
                 </div>
-                <div className="flex w-full gap-2 md:gap-6">
+                <div className="flex flex-col md:flex-row w-full gap-1 md:gap-6">
                     <Input
                         label="Date of Birth"
                         type='date'
@@ -118,7 +121,7 @@ function AddEdit(props) {
                     </label>
 
                 </div>
-                <div className="flex w-full gap-2 md:gap-6">
+                <div className="flex flex-col md:flex-row w-full gap-1 md:gap-6">
                     <Input
                         label="Next of Kin"
                         placeholder='Enter a name'
@@ -138,7 +141,7 @@ function AddEdit(props) {
                         onChange={handleChange}
                     />
                 </div>
-                <div className="flex w-full gap-2 md:gap-6">
+                <div className="flex flex-col md:flex-row gap-1 md:gap-6">
                     <Input
                         label="Department"
                         placeholder="department"
@@ -162,7 +165,7 @@ function AddEdit(props) {
                 </div>
                 <h2 className="text-xl my-2 font-semibold text-[#007560]">Personal Information</h2>
                 <div className="flex w-full flex-col">
-                    <div className="flex gap-5">
+                    <div className="flex flex-col md:flex-row md:gap-5 gap-2">
                         <Input
                             label="Height"
                             type='text'
@@ -189,7 +192,7 @@ function AddEdit(props) {
                             onChange={handleChange}
                         />
                     </div>
-                    <div className="flex gap-5">
+                    <div className="flex flex-col md:flex-row md:gap-5 gap-2">
                         <Input
                             label="Blood Type"
                             type='text'
@@ -216,10 +219,10 @@ function AddEdit(props) {
                         />
                     </div>
                 </div>
-                    <div className=" flex justify-center mt-10 gap-10">
-                    { patientData ? <EditArea link={{
-                        pathname: `/patients/${encodeURIComponent(patientData._id)}`
-                    }} onSave={callEdit} /> : <AddArea onAdd={handleCreate}/> }
+                    <div className=" flex justify-center mb-10 gap-10 md:mb-10">
+                    { patientData ? 
+                   <button onClick={(e) => callEdit(e)} className="px-10 py-2 w-50 rounded font-sm text-center font-medium text-[#007560] border border-[#007560] m-5 shadow duration-200 hover:bg-[#007560] hover:text-white">Save</button>
+                    : <AddArea onAdd={handleCreate}/> }
                     </div>
             </form>
         </div>
