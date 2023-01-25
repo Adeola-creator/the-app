@@ -29,8 +29,10 @@ const manageVisit = async(req, res) =>{
         case "GET":
             try{
                 await Visit.find({})
-                .then(visits => {
-                   return  res.status(200).json({visits})
+                .then(visits => {                    if (res.status === 404){
+                        console.log("No visits found");
+                    }
+                   return  res.status(200).json(visits)
                 })
                 .catch(err => res.json({...err}))
             }catch(error){
