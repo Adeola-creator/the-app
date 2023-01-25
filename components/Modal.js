@@ -1,30 +1,20 @@
 import React, {useState} from 'react'
+import axios from 'axios';
 
 function Modal(props) {
     const [modal, setModal]  = useState(false)
-    const [confirmDelete, setConfirmDelete] = useState(false)
-    const {onDelete} = props
-    function doDelete(){
-        console.log("clicked delete")
-       toggleModal
-    }
-       
-    function approveDelete(){
-        setConfirmDelete(true)
-        {confirmDelete && onDelete}
-    }
     function toggleModal (){
         setModal(!modal)
     }
   return (
     <div>
-      <button className={`${props.className}`} onClick= {doDelete}>{props.action}</button>
-      {modal &&  <div onClick= {toggleModal} className='left-0 right-0 top-0 bottom-0 w-screen fixed h-screen flex items-center justify-center bg-black/[.7]'>
-      <div onClick= {toggleModal} className='fixed rounded  bg-white'>
-      <p className="font-medium">{props.message}</p>
-      <div>
-      <button onClick={approveDelete}>Yes</button>
-      <button onClick={toggleModal}>No</button>
+      <button className={`${props.className}`} onClick= {toggleModal}>{props.action}</button>
+      {modal &&  <div onClick= {toggleModal} className='inset-0 fixed h-screen flex items-center justify-center bg-black/[.7]'>
+      <div onClick= {toggleModal} className='fixed rounded text-center p-5 bg-white'>
+      <p className="font-medium text-xl">{props.message}</p>
+      <div className='flex gap-5 justify-center items-center my-2'>
+      <button onClick={props.onDelete} className='w-20 p-1 bg-[#ff0000]/80 text-white text-sm font-medium rounded hover:opacity-70 duration-300'>Yes</button>
+      <button className="bg-slate-500 p-1 w-20 text-white text-sm font-medium rounded hover:opacity-70 duration-300"onClick={toggleModal}>No</button>
       </div>
       
       </div>
