@@ -3,6 +3,9 @@ import Modal from "../../components/Modal"
 import Details from "../../components/Details"
 import axios from "axios"
 import Swal from "sweetalert2"
+import { useRouter } from "next/router"
+
+
 
 export async function getStaticPaths() {
   const res = await axios.get(`http://localhost:3000/api/patients`)
@@ -23,27 +26,31 @@ export async function getStaticProps({params}) {
     revalidate: 5
   }
 }
-function handleDelete(_id) { 
- axios.delete(`http://localhost:3000/api/patients/${_id}`)
- .then(res => console.log(res, "Patient Deleted"))
- .then(
-  Swal.fire({
-    icon: 'success',
-    title: 'Patient Deleted Successfully',
-    showClass: {
-      popup: 'animate__animated animate__fadeInDown'
-    },
-    hideClass: {
-      popup: 'animate__animated animate__fadeOutUp'
-    }
-  })
- )
-}
+
 
 export default function Display({ data }) {
+  const router = useRouter()
+  function handleDelete(_id) { 
+     axios.delete(`http://localhost:3000/api/patients/${_id}`)
+     .then(
+      Swal.fire({
+        icon: 'success',
+        title: 'Patient Deleted Successfully',
+        timer: 2000,
+        showConfirmButton: false,
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      })
+     )
+     .then(() => router.push(`/patients`))
+    }
   const currentPatient = data
   const { firstName, lastName, department, phone, height, weight, nextOfKin, createdAt, createdBy, updatedAt, allergies, dob, nextOfKinContact, gender, genotype, address, bloodPressure, bloodType, _id } = currentPatient
-  return <div className="p-5">
+  return <div className="p-5 pl-10  md:h-screen">
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
     <Details
       title="Name:"
@@ -117,7 +124,7 @@ export default function Display({ data }) {
     </div>
     
 
-    <div className="m-2 w-full flex flex-col md:flex-row  justify-around items-center gap-10">
+    <div className="m-2 mt-5 w-full flex flex-col md:flex-row md:mt-5  justify-center items-center gap-10">
     <Link href={{
       pathname: `/edit/${encodeURIComponent(_id)}`}} className="bg-cyan-400 text-white p-2 rounded-lg text-center w-[25ch]">
       Edit Patient Information</Link>
