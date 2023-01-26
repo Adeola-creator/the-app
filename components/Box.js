@@ -4,7 +4,7 @@ import { capitalize } from 'lodash';
 
 function Box(props) {
   return (
-    <div className='grid gap-4 grid-cols-2 sm:grid-cols-4 md:grid-cols-6 p-5 justify-center items-center'>
+    <div className='grid gap-4 grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 p-5 justify-center items-center'>
     {(props.data).map((patient, index) => 
       <Card 
       key={index}
