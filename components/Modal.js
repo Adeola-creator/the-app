@@ -1,11 +1,18 @@
-import React, {useState} from 'react'
-import axios from 'axios';
+import React, {useEffect, useState} from 'react'
 
 function Modal(props) {
     const [modal, setModal]  = useState(false)
     function toggleModal (){
         setModal(!modal)
     }
+    useEffect(() => {
+      if(modal){
+        document.body.classList.add("overflow-y-hidden")
+      }else{
+        document.body.classList.remove("overflow-y-hidden")
+      }
+    })
+   
   return (
     <div>
       <button className={`${props.className}`} onClick= {toggleModal}>{props.action}</button>
