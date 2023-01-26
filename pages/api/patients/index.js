@@ -15,7 +15,6 @@ const managePatients = async (req, res) => {
                 }
                 const patient = new Patient({...req.body})
                 patient.save().then(() => {
-                    console.log("Patient successfully created");
                     return res.status(201).json(
                         patient
                     )
