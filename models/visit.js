@@ -2,14 +2,9 @@ import mongoose from "mongoose";
 const { Schema, model, models} = mongoose
 
 const visitSchema = new Schema({
-    date: {
-        type: Date,
-        default: createdAt
-    },
     visitDate: String,
     patientName: String,
     attendantName: String,
-    patient: {type: Schema.Types.ObjectId, ref: 'Patient'},
     observation: String,
     drugs: String
 }, {timestamps: true})

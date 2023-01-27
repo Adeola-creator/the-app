@@ -8,7 +8,6 @@ function Card(props) {
             <h1 className="text-2xl font-black text-[#007560]">{initial}</h1>
             <p className="font-medium py-1">{firstName} {lastName}</p>
             <p className="text-md">{department}</p>
-            <p className="text-sm py-1"><span className="font-medium">Last Visit:</span>{lastVisit}</p>
             <hr className="w-20 h-0.5 m-1 bg-[#007560] border border-[#007560] rounded-md" />
             <div>
                 <Link href={{

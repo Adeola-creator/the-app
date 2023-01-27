@@ -12,7 +12,6 @@ function Box(props) {
       firstName= {capitalize(patient.firstName)}
       lastName={capitalize(patient.lastName)}
       department={patient.department}
-      lastVisit={patient.lastVisit}
       id={patient._id}
        />)}
     </div>

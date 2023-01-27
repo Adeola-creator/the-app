@@ -9,7 +9,7 @@ function Patients() {
   const [patientData, setPatientData] = useState([]);
   const [searchPatients, setSearchPatients] = useState([]);
   const [searchData, setSearchData] = useState("");
-  const keys = ["firstName", "lastName", "department", "lastVisit"];
+  const keys = ["firstName", "lastName", "department"];
 
   useEffect(() => {
     const fetchData = async () => {

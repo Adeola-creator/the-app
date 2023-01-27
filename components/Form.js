@@ -1,8 +1,8 @@
 import axios from 'axios'
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import Input from './Input'
 
-function Form(props) {
+function Form() {
   const [visitForm, setVisitForm] = useState({
     visitDate: "",
     patientName: "",
@@ -11,7 +11,7 @@ function Form(props) {
     observation: "",
   })
   const addVisit = () => {
-    axios.post("http://localhost/3000/visits",{
+    axios.post("http://localhost/3000/api/visits",{
       ...visitForm})
       .then((response) => {
         console.log(response);
@@ -20,15 +20,9 @@ function Form(props) {
          console.log(error);
       })
   }
-  const handleEnter= (e) => {
-    console.log(e.key);
-    if (e.key === "Enter") {	
-      addVisit()
-    }
-  }
   function handleChange(e){
     const {name, value}= e.target
-    setVisitForm(prevValue => ({
+    setVisitForm((prevValue) => ({
       ...prevValue,
       [name]:value
     }))
@@ -36,7 +30,6 @@ function Form(props) {
   return (
     <div>
     <form 
-    onKeyDown={handleEnter}
     className='mx-2 pt-4'>
     <label 
     className='flex flex-col font-medium w-full'
@@ -76,9 +69,9 @@ function Form(props) {
     value={visitForm.observation}
     placeholder="Note down observations"
     onChange={handleChange}
-    className='border rounded focus:outline-none'></textarea>
+    className='border rounded focus:outline-none p-2'></textarea>
     </label>
-   <button onClick={addVisit} className='rounded-lg border p-1 my-2 px-3'>Save</button>
+   <button onClick={addVisit} className='rounded-lg border p-1 my-2 px-3'>Save Visit</button>
     </form>
     </div>
   )

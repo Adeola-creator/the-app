@@ -5,7 +5,7 @@ import Form from '../components/Form'
 
 function visits() {
   return (
-    <div>
+    <div className='md:h-screen'>
         <Collapsible 
         defaultLabel= "Record Visit"
         activeLabel= "Close Form"

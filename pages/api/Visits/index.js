@@ -1,5 +1,5 @@
 import { Visit } from "../../../models/visit";
-import { Patient } from "../../../models/patient";
+
 import connectDB from "../../../utils/connectdb";
 
 const manageVisit = async(req, res) =>{
@@ -7,9 +7,7 @@ const manageVisit = async(req, res) =>{
     switch (req.method) {
         case "POST":
             try{
-                Patient.find(patientNumber)
                 const visit = new Visit({
-                    patient : Patient._id,
                     ...req.body})
                visit.save().then(() => {
                     console.log("Visit successfully created");
