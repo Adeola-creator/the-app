@@ -9,7 +9,8 @@ const manageVisit = async(req, res) =>{
             try{
                 const visit = new Visit({
                     ...req.body})
-               visit.save().then(() => {
+               visit.save()
+               .then(() => {
                     console.log("Visit successfully created");
                     return res.status(201).json({
                         status: "success",

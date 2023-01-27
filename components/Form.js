@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, {useState} from 'react'
 import Input from './Input'
+import Swal from 'sweetalert2'
 
 function Form() {
   const [visitForm, setVisitForm] = useState({
@@ -10,10 +11,25 @@ function Form() {
     drugs:  "",
     observation: "",
   })
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+})
   const addVisit = () => {
     axios.post("http://localhost/3000/api/visits",{
       ...visitForm})
       .then((response) => {
+        Toast.fire({
+          icon: 'success',
+          title: 'Visit saved successfully'
+      })
         console.log(response);
       })
       .catch((error) => {
