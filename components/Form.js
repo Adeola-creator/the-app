@@ -23,7 +23,7 @@ function Form() {
     }
 })
   const addVisit = () => {
-    axios.post("http://localhost/3000/api/visits",{
+    axios.post("http://localhost:3000/api/visits",{
       ...visitForm})
       .then((response) => {
         Toast.fire({
@@ -87,7 +87,7 @@ function Form() {
     onChange={handleChange}
     className='border rounded focus:outline-none p-2'></textarea>
     </label>
-   <button onClick={addVisit} className='rounded-lg border p-1 my-2 px-3'>Save Visit</button>
+   <button onClick={()=>addVisit()} className='rounded-lg border p-1 my-2 px-3'>Save Visit</button>
     </form>
     </div>
   )
